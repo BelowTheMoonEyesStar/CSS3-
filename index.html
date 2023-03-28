@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="board" data-index="1">
+            <div class="text">
+                <span>点击翻牌</span>
+            </div>
+            <img src="./images/1.gif">
+        </div>
+        <div class="board" data-index='2'>
+            <div class="text">
+                <span>点击翻牌</span>
+            </div>
+            <img src="./images/2.gif">
+        </div>
+        <div class="board" data-index='3'>
+            <div class="text">
+                <span>点击翻牌</span>
+            </div>
+            <img src="./images/3.jpg">
+        </div>
+        <div class="board" data-index='4'>
+            <div class="text">
+                <span>点击翻牌</span>
+            </div>
+            <img src="./images/4.jpg">
+        </div>
+        <div class="board" data-index="1">
+            <div class="text">
+                <span>点击翻牌</span>
+            </div>
+            <img src="./images/1.gif">
+        </div>
+        <div class="board" data-index='2'>
+            <div class="text">
+                <span>点击翻牌</span>
+            </div>
+            <img src="./images/2.gif">
+        </div>
+        <div class="board" data-index='3'>
+            <div class="text">
+                <span>点击翻牌</span>
+            </div>
+            <img src="./images/3.jpg">
+        </div>
+        <div class="board" data-index='4'>
+            <div class="text">
+                <span>点击翻牌</span>
+            </div>
+            <img src="./images/4.jpg">
+        </div>
+    </div>
+
+    <script src="https://cdn.staticfile.org/jquery/3.6.4/jquery.min.js"></script>
+
+    <script>
+        var dom = document.querySelectorAll(".board");
+        var arr = [];
+        var arr2 = [];
+        $(".board").click(function () {
+            console.log($(".board").is(".active"));
+            // 获取自定义属性值,并添加空数组中
+            arr.push($(this).attr("data-index"));
+            //判断数组长度
+            if (arr.length == 2) {
+                arr.forEach((item) => {
+                    arr2.push(item);
+                    // 判断点击两张牌是否相等
+                    if (arr2.indexOf(item) != 0) {
+                        // 进入条件触发定时器
+                        timer();
+                    }
+                });
+                // 清空数组元素
+                arr.splice(0);
+                arr2.splice(0);
+            }
+            $(this).addClass("active");
+        });
+
+        for(var i = 0; i < dom.length; i++){
+            console.log(dom[i].classList.contains('active'));
+        }
+
+
+
+
+        // 封装定时器 清除class 属性
+        function timer() {
+            setTimeout(function () {
+                $(".board").removeClass("active");
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
